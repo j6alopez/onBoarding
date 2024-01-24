@@ -1,5 +1,4 @@
-<h3>Dedica moltes hores</h3>
-<p>
-    Un mínim de 30 hores a la setmana. Si no en tens prou, hauràs de dedicar-li més hores. 
-    Al principi sembla impossible, però notaràs una millora ràpidament.
-</p>
+<div *ngFor="let step of phrases" class="row">
+    <h3>{{ step.title }}</h3>
+    <p>{{ step.description}}</p>
+</div>
