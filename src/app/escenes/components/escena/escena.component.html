@@ -1,26 +1,25 @@
 <div *ngFor="let step of phrases" class="col mb-2 d-flex justify-content-center align-items-center">
 
-  <div class="card">
+  <div class="card shadow">
     <img class="card-img-top mb-2 img-fluid" src={{step.img}} alt="">
-
-    <div class="card-body">
-      <h3 class="card-title mb-3">{{ step.title }}</h3>
+    <div class="card-body p-4">
+      <h5 class="card-title mb-3">{{ step.title }}</h5>
       <p class="card-text">{{ step.description}}</p>
+
+      <div class="row">
+        <div class="col d-flex justify-content-start align-items-center">
+          <div *ngFor="let iteration of phrases" class="step mx-2"></div>
+        </div>
+  
+        <div class="col d-flex justify-content-end align-items-center">
+          <button class="fa-solid fa-arrow-left mx-2 my-2"></button>
+          <button class="fa-solid fa-arrow-right me-4 my-3"></button>
+        </div>
+
+      </div>
       
     </div>
 
-    <div class="row">
-
-      <div class="col d-flex justify-content-start align-items-center p-5">
-        <div *ngFor="let iteration of phrases" class="step mx-2"></div>
-      </div>
-
-      <div class="col d-flex justify-content-end align-items-center">
-        <button class="fa-solid fa-arrow-left mx-2 my-2"></button>
-        <button class="fa-solid fa-arrow-right me-4 my-3"></button>
-      </div>
-
-    </div>
   </div>
 
 </div>

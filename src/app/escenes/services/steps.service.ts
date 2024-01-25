@@ -14,7 +14,6 @@ export class StepsService {
       img: './../../../assets/time_managment.svg',
       bgcolor: '#4da2a9'
     },
-
     {
       title: 'Programa projectes propis',
       description: `Més val 10 hores treballant en projectes propis, que 10 hores mirant tutorials. 
@@ -22,7 +21,6 @@ export class StepsService {
       img: './../../../assets/programming.svg',
       bgcolor: '#d3d4d9'
     },
-
     {
       title: 'Procura descansar',
       description: ` Descansar bé i desconnectar són vitals. 

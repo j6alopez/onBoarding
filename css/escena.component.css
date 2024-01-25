@@ -1,10 +1,14 @@
 .card {
-  border-radius: 1.5rem;
+  border-radius: 2rem;
   width: 50%;
 }
+.card .card-img-top {
+  background-color: #ffd167;
+  border-radius: 2rem 2rem 0 0;
+}
 .card button {
-  height: 3rem;
-  width: 3rem;
+  height: 2.5rem;
+  width: 2.5rem;
   background-color: black;
   color: white;
   padding: 0.5rem 0;
