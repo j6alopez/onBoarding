@@ -9,4 +9,13 @@ import { Step } from '../../interfaces/step.interface';
 export class EscenaComponent {
   @Input()
   public phrases: Step[] = [];
+  public currentStep: number = 0;
+
+  moveToNextStep(): void{
+    ++ this.currentStep;
+  }
+
+  moveToPreviousStep(): void{
+    -- this.currentStep;
+  }
 }

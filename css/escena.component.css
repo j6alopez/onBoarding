@@ -1,1 +1,20 @@
-/*# sourceMappingURL=escena.component.css.map */
+.card {
+  border-radius: 1.5rem;
+  width: 50%;
+}
+.card button {
+  height: 3rem;
+  width: 3rem;
+  background-color: black;
+  color: white;
+  padding: 0.5rem 0;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.step {
+  height: 1rem;
+  width: 1rem;
+  background-color: #cdd2d6;
+  border-radius: 50%;
+}/*# sourceMappingURL=escena.component.css.map */
