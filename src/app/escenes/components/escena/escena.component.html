@@ -1,7 +1,12 @@
-<div *ngFor="let step of phrases" class="col mb-2 d-flex justify-content-center align-items-center">
+<div class="col mb-2 d-flex justify-content-center align-items-center">
 
   <div class="card shadow">
-    <img class="card-img-top mb-2 img-fluid" src={{step.img}} alt="">
+    <img 
+    [ngStyle]="{'background-color': step.bgcolor}"
+      class="card-img-top mb-2 img-fluid" 
+      [src]="step.img" 
+      alt="Image action"
+    >
     <div class="card-body p-4">
       <h5 class="card-title mb-3">{{ step.title }}</h5>
       <p class="card-text">{{ step.description}}</p>
@@ -12,8 +17,10 @@
         </div>
   
         <div class="col d-flex justify-content-end align-items-center">
-          <button class="fa-solid fa-arrow-left mx-2 my-2"></button>
-          <button class="fa-solid fa-arrow-right me-4 my-3"></button>
+          <button (click)="moveToPreviousStep()" 
+            class="fa-solid fa-arrow-left mx-2 my-2"></button>
+          <button (click)="moveToNextStep()" 
+            class="fa-solid fa-arrow-right me-4 my-3"></button>
         </div>
 
       </div>
