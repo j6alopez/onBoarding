@@ -1,30 +1,28 @@
-<div class="col mb-2 d-flex justify-content-center align-items-center">
+<div class="col">
+  <div class="card-group">
+    <div class="card shadow mx-auto">
+      <img [ngStyle]="{'background-color': step.bgcolor}" class="mb-2 img-fluid" src={{step.img}} alt="Image action">
+      <div class="card-body p-4">
+        <h5 class="card-title mb-3">{{ step.title }}</h5>
+        <p class="card-text">{{ step.description}}</p>
 
-  <div class="card shadow">
-    <img 
-    [ngStyle]="{'background-color': step.bgcolor}"
-      class="card-img-top mb-2 img-fluid" 
-      [src]="step.img" 
-      alt="Image action"
-    >
-    <div class="card-body p-4">
-      <h5 class="card-title mb-3">{{ step.title }}</h5>
-      <p class="card-text">{{ step.description}}</p>
+        <div class="row">
+          <div class="col d-flex justify-content-start align-items-center mx-auto ">
+            <button *ngFor="
+              let iteration of phrases
+              index as index
+            " (click)="chooseStep(index)" class="step mx-2"></button>
+          </div>
 
-      <div class="row">
-        <div class="col d-flex justify-content-start align-items-center">
-          <div *ngFor="let iteration of phrases" class="step mx-2"></div>
-        </div>
-  
-        <div class="col d-flex justify-content-end align-items-center">
-          <button (click)="moveToPreviousStep()" 
-            class="fa-solid fa-arrow-left mx-2 my-2"></button>
-          <button (click)="moveToNextStep()" 
-            class="fa-solid fa-arrow-right me-4 my-3"></button>
+          <div class="col d-flex justify-content-end align-items-center">
+            <button (click)="moveToPreviousStep()" class="fa-solid fa-arrow-left mx-2 my-2"></button>
+            <button (click)="moveToNextStep()" class="fa-solid fa-arrow-right me-4 my-3"></button>
+          </div>
+
         </div>
 
       </div>
-      
+
     </div>
 
   </div>

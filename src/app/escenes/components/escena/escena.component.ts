@@ -31,5 +31,9 @@ export class EscenaComponent implements OnChanges{
     this.step = this.phrases[this.currentStep];
   }
 
+  chooseStep(step: number) {
+    this.currentStep = step;
+    this.moveStep();
+  }
   
 }
