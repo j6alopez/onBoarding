@@ -1,22 +1,33 @@
 .card {
-  border-radius: 2rem !important; 
+  border-radius: 2rem !important;
   width: 20rem;
   & img {
     border-radius: 2rem 2rem 0 0;
   }
-  & button {
+  & button.arrow {
     height: 2.5rem;
     width: 2.5rem;
     padding: 0.5rem 0;
-    border-radius: 50%;
-    border: 0;
-    text-align: center;
     background-color: black;
     color: white;
   }
-  & button.step {
-    height: 1rem;
-    width: 1rem;
-    background-color: #ccd0d5;
-  }
+}
+
+button {
+  border: 0;
+  border-radius: 50%;
+}
+
+button.not-active {
+  height: 1rem;
+  width: 1rem;
+  background-color: #ccd0d5;
+
+}
+
+button.active {
+  height: 1rem;
+  width: 2rem;
+  border-radius: 2rem;
+  background-color: black;
 }

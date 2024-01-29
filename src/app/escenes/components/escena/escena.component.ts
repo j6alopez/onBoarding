@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { Step } from '../../interfaces/step.interface';
 
 @Component({
@@ -6,34 +6,69 @@ import { Step } from '../../interfaces/step.interface';
   templateUrl: './escena.component.html',
   styleUrl: './escena.component.scss'
 })
-export class EscenaComponent implements OnChanges{
-  
+export class EscenaComponent implements OnChanges {
+
   @Input()
   public phrases: Step[] = [];
+
+  @ViewChildren('stepButton')
+  public stepButtons!:QueryList<ElementRef<HTMLButtonElement>>;
+
   public step!:Step;
   public currentStep: number = 0;
+
+  private notActiveStepStyle: string = 'not-active'
+  private activeStepStyle: string = 'active'
 
   moveToNextStep(): void{
     ++ this.currentStep;
     this.moveStep();
+    const activeStep: HTMLButtonElement = this.stepButtons.get(this.currentStep)!.nativeElement;
+    this.manageStepStyles(activeStep);
   }
 
   moveToPreviousStep(): void{
     -- this.currentStep;
     this.moveStep();
+    const activeStep: HTMLButtonElement = this.stepButtons.get(this.currentStep)!.nativeElement;
+    this.manageStepStyles(activeStep);
   }
 
   moveStep() {
     this.step = this.phrases[this.currentStep];
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.step = this.phrases[this.currentStep];
+  isFirstStep(): boolean {
+    return this.currentStep === 0;
   }
 
-  chooseStep(step: number) {
+  isLastStep(): boolean {
+    const maxPosition = this.phrases.length -1;
+    return this.currentStep === maxPosition;
+  }
+
+  chooseStep(event: Event, step: number) {
     this.currentStep = step;
     this.moveStep();
+    this.manageStepStyles( event.target as HTMLButtonElement);
+  }
+
+  private manageStepStyles(htmlButton: HTMLButtonElement) {
+    this.stepButtons
+      .filter(element => element.nativeElement !== htmlButton)
+      .forEach((element) => {
+        element.nativeElement.classList.add(this.notActiveStepStyle);
+        element.nativeElement.classList.remove(this.activeStepStyle);
+      });
+
+    htmlButton.classList.add(this.activeStepStyle);
+    htmlButton.classList.remove(this.notActiveStepStyle);
+  }
+
+  //Events
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.step = this.phrases[this.currentStep];
   }
   
 }

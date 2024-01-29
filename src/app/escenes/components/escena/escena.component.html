@@ -7,18 +7,32 @@
         <p class="card-text">{{ step.description}}</p>
 
         <div class="row">
-          <div class="col d-flex justify-content-start align-items-center mx-auto ">
+          <div class="col btn-group d-flex justify-content-start align-items-center ">
             <button *ngFor="
-              let iteration of phrases
+              let iteration of phrases 
               index as index
-            " (click)="chooseStep(index)" class="step mx-2"></button>
+              first as first
+              " 
+              (click)="chooseStep($event, index)" 
+              class="not-active mx-2"
+              #stepButton
+            >
+            </button>
           </div>
 
           <div class="col d-flex justify-content-end align-items-center">
-            <button (click)="moveToPreviousStep()" class="fa-solid fa-arrow-left mx-2 my-2"></button>
-            <button (click)="moveToNextStep()" class="fa-solid fa-arrow-right me-4 my-3"></button>
+            <button 
+              *ngIf="!isFirstStep()"
+              (click)="moveToPreviousStep()" 
+              class="fa-solid fa-arrow-left mx-1 my-2 arrow"
+            >
+          </button>
+            <button 
+              *ngIf="!isLastStep()"
+              (click)="moveToNextStep()" 
+              class="fa-solid fa-arrow-right mx-1 my-3 arrow">
+            </button>
           </div>
-
         </div>
 
       </div>
