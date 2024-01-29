@@ -19,24 +19,7 @@ export class EscenaComponent implements OnChanges {
 
   private notActiveStepStyle: string = 'not-active'
   private activeStepStyle: string = 'active'
-
-  moveToNextStep(): void{
-    ++ this.currentStep;
-    this.moveStep();
-    const activeStep: HTMLButtonElement = this.stepButtons.get(this.currentStep)!.nativeElement;
-    this.manageStepStyles(activeStep);
-  }
-
-  moveToPreviousStep(): void{
-    -- this.currentStep;
-    this.moveStep();
-    const activeStep: HTMLButtonElement = this.stepButtons.get(this.currentStep)!.nativeElement;
-    this.manageStepStyles(activeStep);
-  }
-
-  moveStep() {
-    this.step = this.phrases[this.currentStep];
-  }
+  private maxPosition: number = 0;
 
   isFirstStep(): boolean {
     return this.currentStep === 0;
@@ -47,10 +30,21 @@ export class EscenaComponent implements OnChanges {
     return this.currentStep === maxPosition;
   }
 
-  chooseStep(event: Event, step: number) {
+  handleClickOnStep(event: Event, step: number) {
     this.currentStep = step;
-    this.moveStep();
+    this.step = this.phrases[this.currentStep];
     this.manageStepStyles( event.target as HTMLButtonElement);
+  }
+
+  handleClickOnArrowButton(position: number): void {
+    const positionCandidate = this.currentStep += position;
+    if(positionCandidate === 0 || positionCandidate > this.maxPosition) {
+      return;
+    }
+    this.currentStep = positionCandidate;
+    this.step = this.phrases[this.currentStep];
+    const activeStep: HTMLButtonElement = this.stepButtons.get(this.currentStep)!.nativeElement;
+    this.manageStepStyles(activeStep);
   }
 
   private manageStepStyles(htmlButton: HTMLButtonElement) {
@@ -69,6 +63,7 @@ export class EscenaComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.step = this.phrases[this.currentStep];
+    this.maxPosition = this.phrases.length - 1;
   }
   
 }

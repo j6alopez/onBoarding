@@ -13,8 +13,9 @@
               index as index
               first as first
               " 
-              (click)="chooseStep($event, index)" 
-              class="not-active mx-2"
+              (click)="handleClickOnStep($event, index)"
+              [ngClass]="first ? 'active' : 'not-active'"
+              class="mx-2"
               #stepButton
             >
             </button>
@@ -23,13 +24,13 @@
           <div class="col d-flex justify-content-end align-items-center">
             <button 
               *ngIf="!isFirstStep()"
-              (click)="moveToPreviousStep()" 
+              (click)="handleClickOnArrowButton(-1)" 
               class="fa-solid fa-arrow-left mx-1 my-2 arrow"
             >
           </button>
             <button 
               *ngIf="!isLastStep()"
-              (click)="moveToNextStep()" 
+              (click)="handleClickOnArrowButton(+1)" 
               class="fa-solid fa-arrow-right mx-1 my-3 arrow">
             </button>
           </div>
