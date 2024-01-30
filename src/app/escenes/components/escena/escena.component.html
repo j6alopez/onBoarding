@@ -1,6 +1,7 @@
 <div class="col">
-  <div class="card-group">
-    <div class="card shadow mx-auto">
+    <div [@animSlider] = "currentStep" 
+      class="card shadow mx-auto"
+    >
       <img 
         [ngStyle]="{'background-color': phrases[currentStep].bgcolor}" 
         class="mb-2 img-fluid" 
@@ -42,7 +43,5 @@
       </div>
 
     </div>
-
-  </div>
 
 </div>

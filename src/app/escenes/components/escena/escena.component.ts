@@ -11,12 +11,9 @@ export class EscenaComponent {
 
   @Input()
   public phrases: Step[] = [];
-
   public  currentStep: number = 0;
+  
   private maxPosition: number = 0;
-
-  private notActiveStepStyle: string = 'not-active'
-  private activeStepStyle: string = 'active'
 
   isFirstStep(): boolean {
     return this.currentStep === 0;
@@ -37,20 +34,7 @@ export class EscenaComponent {
     if(positionCandidate < 0 || positionCandidate > this.maxPosition) {
       return;
     }
-    console.log(this.currentStep = positionCandidate);
     this.currentStep = positionCandidate;
   }
 
-  private manageStepStyles(htmlButton: HTMLButtonElement) {
-    // this.stepButtons
-    //   .filter(element => element.nativeElement !== htmlButton)
-    //   .forEach((element) => {
-    //     element.nativeElement.classList.add(this.notActiveStepStyle);
-    //     element.nativeElement.classList.remove(this.activeStepStyle);
-    //   });
-
-    htmlButton.classList.add(this.activeStepStyle);
-    htmlButton.classList.remove(this.notActiveStepStyle);
-  }
-  
 }
