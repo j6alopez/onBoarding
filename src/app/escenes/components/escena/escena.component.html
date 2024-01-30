@@ -8,17 +8,15 @@
 
         <div class="row">
           <div class="col btn-group d-flex justify-content-start align-items-center ">
-            <button *ngFor="
-              let iteration of phrases 
-              index as index
-              first as first
-              " 
-              (click)="handleClickOnStep($event, index)"
-              [ngClass]="first ? 'active' : 'not-active'"
-              class="mx-2"
-              #stepButton
-            >
+            @for (phrase of phrases; track phrase; let index = $index; let isFirst = $first ) {
+              <button 
+                (click)="handleClickOnStep($event, index)"
+                [ngClass]="isFirst ? 'active' : 'not-active'"
+                class="mx-2"
+                #stepButton
+              >
             </button>
+            }
           </div>
 
           <div class="col d-flex justify-content-end align-items-center">

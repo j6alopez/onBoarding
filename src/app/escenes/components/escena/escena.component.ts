@@ -38,7 +38,7 @@ export class EscenaComponent implements OnChanges {
 
   handleClickOnArrowButton(position: number): void {
     const positionCandidate = this.currentStep += position;
-    if(positionCandidate === 0 || positionCandidate > this.maxPosition) {
+    if(positionCandidate < 0 || positionCandidate > this.maxPosition) {
       return;
     }
     this.currentStep = positionCandidate;
