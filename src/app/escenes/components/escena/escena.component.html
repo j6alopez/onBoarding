@@ -1,21 +1,25 @@
 <div class="col">
   <div class="card-group">
     <div class="card shadow mx-auto">
-      <img [ngStyle]="{'background-color': step.bgcolor}" class="mb-2 img-fluid" src={{step.img}} alt="Image action">
+      <img 
+        [ngStyle]="{'background-color': phrases[currentStep].bgcolor}" 
+        class="mb-2 img-fluid" 
+        src="{{ phrases[currentStep].img }}" 
+        alt="Image action"
+      >
       <div class="card-body p-4">
-        <h5 class="card-title mb-3">{{ step.title }}</h5>
-        <p class="card-text">{{ step.description}}</p>
+        <h5 class="card-title mb-3">{{ phrases[currentStep].title }}</h5>
+        <p class="card-text">{{ phrases[currentStep].description}}</p>
 
         <div class="row">
           <div class="col btn-group d-flex justify-content-start align-items-center ">
             @for (phrase of phrases; track phrase; let index = $index; let isFirst = $first ) {
               <button 
                 (click)="handleClickOnStep($event, index)"
-                [ngClass]="isFirst ? 'active' : 'not-active'"
+                [ngClass]="currentStep === index ? 'active' : 'not-active'"
                 class="mx-2"
-                #stepButton
               >
-            </button>
+              </button>
             }
           </div>
 

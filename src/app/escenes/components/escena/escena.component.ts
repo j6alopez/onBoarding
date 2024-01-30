@@ -1,69 +1,56 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Step } from '../../interfaces/step.interface';
 
 @Component({
   selector: 'escenes-escena',
   templateUrl: './escena.component.html',
-  styleUrl: './escena.component.scss'
+  styleUrl: './escena.component.scss',
+  animations: []
 })
-export class EscenaComponent implements OnChanges {
+export class EscenaComponent {
 
   @Input()
   public phrases: Step[] = [];
 
-  @ViewChildren('stepButton')
-  public stepButtons!:QueryList<ElementRef<HTMLButtonElement>>;
-
-  public step!:Step;
-  public currentStep: number = 0;
+  public  currentStep: number = 0;
+  private maxPosition: number = 0;
 
   private notActiveStepStyle: string = 'not-active'
   private activeStepStyle: string = 'active'
-  private maxPosition: number = 0;
 
   isFirstStep(): boolean {
     return this.currentStep === 0;
   }
 
   isLastStep(): boolean {
-    const maxPosition = this.phrases.length -1;
-    return this.currentStep === maxPosition;
+    return this.currentStep === this.phrases.length -1;
   }
 
   handleClickOnStep(event: Event, step: number) {
     this.currentStep = step;
-    this.step = this.phrases[this.currentStep];
-    this.manageStepStyles( event.target as HTMLButtonElement);
   }
 
   handleClickOnArrowButton(position: number): void {
+    console.log('aquiiii');
     const positionCandidate = this.currentStep += position;
+    console.log(positionCandidate, this.maxPosition);
     if(positionCandidate < 0 || positionCandidate > this.maxPosition) {
       return;
     }
+    console.log(this.currentStep = positionCandidate);
     this.currentStep = positionCandidate;
-    this.step = this.phrases[this.currentStep];
-    const activeStep: HTMLButtonElement = this.stepButtons.get(this.currentStep)!.nativeElement;
-    this.manageStepStyles(activeStep);
   }
 
   private manageStepStyles(htmlButton: HTMLButtonElement) {
-    this.stepButtons
-      .filter(element => element.nativeElement !== htmlButton)
-      .forEach((element) => {
-        element.nativeElement.classList.add(this.notActiveStepStyle);
-        element.nativeElement.classList.remove(this.activeStepStyle);
-      });
+    // this.stepButtons
+    //   .filter(element => element.nativeElement !== htmlButton)
+    //   .forEach((element) => {
+    //     element.nativeElement.classList.add(this.notActiveStepStyle);
+    //     element.nativeElement.classList.remove(this.activeStepStyle);
+    //   });
 
     htmlButton.classList.add(this.activeStepStyle);
     htmlButton.classList.remove(this.notActiveStepStyle);
-  }
-
-  //Events
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.step = this.phrases[this.currentStep];
-    this.maxPosition = this.phrases.length - 1;
   }
   
 }
