@@ -1,13 +1,14 @@
 <div class="col">
-    <div class="card shadow mx-auto">
-      <img 
+    <div
+      class="card shadow mx-auto">
+      <img [@fadeAnimation]="currentStep"
         [ngStyle]="{'background-color': phrases[currentStep].bgcolor}" 
         class="mb-2 img-fluid" 
         src="{{ phrases[currentStep].img }}" 
         alt="Image action"
       >
       <div class="card-body p-4">
-        <div [@animImageSlider]="currentStep">
+        <div [@fadeAnimation]="currentStep">
           <h5 class="card-title mb-3">{{ phrases[currentStep].title }}</h5>
           <p class="card-text">{{ phrases[currentStep].description}}</p>
 
@@ -31,7 +32,7 @@
               (click)="handleClickOnArrowButton(-1)" 
               class="fa-solid fa-arrow-left mx-1 my-2 arrow"
               >
-            </button>
+              </button>
             } 
             @if(!isLastStep()) {
               <button 

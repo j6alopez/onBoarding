@@ -4,39 +4,77 @@ import { AnimationMetadata, AnimationTriggerMetadata, animate, animation, group,
 
 
 const left = [
-  query(':enter, :leave', style({ position: 'fixed', width: '200px' }), { optional: true }),
+  query(':enter, :leave', style({ position: 'fixed', width: '100%' }), { optional: true }),
   group([
-    query(':enter', [style({ transform: 'translateX(-200px)' }), animate('.3s ease-out', style({ transform: 'translateX(0%)' }))], {
+    query(':enter', [style({ transform: 'translateX(-100%)' }), animate('.3s ease-out', style({ transform: 'translateX(0%)' }))], {
       optional: true,
     }),
-    query(':leave', [style({ transform: 'translateX(0%)' }), animate('.3s ease-out', style({ transform: 'translateX(200px)' }))], {
+    query(':leave', [style({ transform: 'translateX(0%)' }), animate('.3s ease-out', style({ transform: 'translateX(100%)' }))], {
       optional: true,
     }),
   ]),
 ];
 
+const animSlider = trigger('animSlider', [
+  state(
+    'open',
+    style({
+      opacity: 1,
+    })
+  ),
+  state(
+    'close',
+    style({
+      opacity: 0,
+    })
+  ),
+  transition(':increment', animate('2s ease-out')),
+  transition(':decrement', animate('2s ease-out'))
+]);
+
 const right = [
-  query(':enter, :leave', style({ position: 'fixed', width: '200px' }), { optional: true }),
+  query(':enter, :leave', style({ position: 'fixed', width: '100%' }), { optional: true }),
   group([
-    query(':enter', [style({ transform: 'translateX(200px)' }), animate('.3s ease-out', style({ transform: 'translateX(0%)' }))], {
+    query(':enter', [style({ transform: 'translateX(100%)' }), animate('.3s ease-out', style({ transform: 'translateX(0%)' }))], {
       optional: true,
     }),
-    query(':leave', [style({ transform: 'translateX(0%)' }), animate('.3s ease-out', style({ transform: 'translateX(-200px)' }))], {
+    query(':leave', [style({ transform: 'translateX(0%)' }), animate('.3s ease-out', style({ transform: 'translateX(-100%)' }))], {
       optional: true,
     }),
   ]),
 ];
+
+const enterTransition = transition(':enter', [
+  style({
+    opacity: 0,
+  }),
+  animate('1s ease-in', style({ opacity: 1}))
+])
+
+const exitTransition = transition(':leave', [
+  style( {
+    opacity: 1,
+  }),
+  animate('1s ease-in', style({opacity: 0}))
+])
+
+const fadeIn = trigger('fadeIn', [enterTransition]);
+const fadeOut = trigger('fadeOut', [exitTransition]);
+
+
 
 @Component({
   selector: 'escenes-escena',
   templateUrl: './escena.component.html',
   styleUrl: './escena.component.scss',
   animations: [
-    trigger('animImageSlider', [
-      transition(':increment', right),
-      transition(':decrement', left),
+    trigger('fadeAnimation', [
+      transition(':increment, :decrement', [
+        style({ transform: 'translateX(100%)' }),
+        animate('1s ease-in', style({ transform: 'translateX(0%)' })),
+      ]),
     ]),
-  ]
+  ],
 })
 
 export class EscenaComponent {
