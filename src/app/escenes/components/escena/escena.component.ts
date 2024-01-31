@@ -9,12 +9,12 @@ import { animate, style, transition, trigger } from '@angular/animations';
   animations: [
     trigger('sliderAnimation', [
       transition(':increment', [
-        style({ transform: 'translateX(0%)', opacity: 1 }),
-        animate('500ms ease-out', style({ transform: 'translateX(-100%)', opacity: 0})),
+        style({ transform: 'translateX(50%)', opacity: 0 }),
+        animate('750ms ease-in-out', style({ transform: 'translateX(0%)', opacity: 1})),
       ]),
       transition(':decrement', [
-        style({ transform: 'translateX(-100%)', opacity: 0 }),
-        animate('500ms ease-in', style({ transform: 'translateX(0%)', opacity: 1 })),
+        style({ transform: 'translateX(-50%)', opacity: 0 }),
+        animate('750ms ease-in-out', style({ transform: 'translateX(0%)', opacity: 1 })),
       ]),
     ]),
   ],
