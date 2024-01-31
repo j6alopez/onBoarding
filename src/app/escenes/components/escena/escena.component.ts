@@ -70,12 +70,12 @@ const fadeOut = trigger('fadeOut', [exitTransition]);
   animations: [
     trigger('fadeAnimation', [
       transition(':increment', [
-        style({ transform: 'translateX(0%)' }),
-        animate('500ms', style({ transform: 'translateX(-100%)' })),
+        style({ transform: 'translateX(0%)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateX(-100%)', opacity: 0})),
       ]),
       transition(':decrement', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('500ms', style({ transform: 'translateX(0%)' })),
+        style({ transform: 'translateX(-100%)', opacity: 0 }),
+        animate('500ms', style({ transform: 'translateX(0%)', opacity: 1 })),
       ]),
     ]),
   ],
