@@ -69,9 +69,13 @@ const fadeOut = trigger('fadeOut', [exitTransition]);
   styleUrl: './escena.component.scss',
   animations: [
     trigger('fadeAnimation', [
-      transition(':increment, :decrement', [
-        style({ transform: 'translateX(100%)' }),
-        animate('1s ease-in', style({ transform: 'translateX(0%)' })),
+      transition(':increment', [
+        style({ transform: 'translateX(0%)' }),
+        animate('500ms', style({ transform: 'translateX(-100%)' })),
+      ]),
+      transition(':decrement', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('500ms', style({ transform: 'translateX(0%)' })),
       ]),
     ]),
   ],
