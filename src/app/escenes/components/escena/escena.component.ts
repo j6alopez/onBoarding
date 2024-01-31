@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Step } from '../../interfaces/step.interface';
-import { AnimationMetadata, AnimationTriggerMetadata, animate, animation, group, query, state, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'escenes-escena',
